@@ -12,7 +12,7 @@ exports.create = async (req, res) => {
     });
     let data = await quote.save(quote)
         .catch(() => {
-            res.status(500).send({ message: `Some error occurred while creating the Quote.` });
+            res.send({ message: `Some error occurred while creating the Quote.` });
         });
     res.send(data);
 
@@ -21,10 +21,10 @@ exports.findById = async (req, res) => {
     let id = req.params.id
     let quote = await Quote.findById(id)
         .catch(() => {
-            res.status(500).send({ message: `Error retrieving Quote with id=${id}` });
+            res.send({ message: `Error retrieving Quote with id = ${id}` });
         });
     if (!quote)
-        res.status(404).send({ message: `Not found Quote with id=${id}` });
+        res.send({ message: `Not found Quote with id = ${id}` });
     else res.send(quote);
 
 }
@@ -32,12 +32,17 @@ exports.deleteById = async (req, res) => {
     let id = req.params.id
     let quote = await Quote.deleteOne({ _id: id })
         .catch(() => {
-            res.status(500).send({ message: `Error retrieving Quote with id=${id}` });
+            res.send({ message: `Error retrieving Quote with id = ${id}` });
         });
-    if (!quote)
-        res.status(404).send({ message: `Cannot delete Quote with id=${id}. Maybe Quote was not found!` });
-    else
+
+    if (quote.deletedCount === 0) {
+        res.send({ message: `Cannot delete Quote with id = ${id}. Maybe Quote was not found!` });
+    }
+    else {
         res.send({
             message: "Quote was deleted successfully!"
         });
+
+    }
+
 }

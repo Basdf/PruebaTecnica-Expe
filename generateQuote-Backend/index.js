@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const db = require("./app/dbConfig");
 const routes = require("./app/quote.routes")
+const cors = require("cors");
 
 //connect to data base
 db.mongoose
@@ -22,6 +23,21 @@ db.mongoose
 const app = express();
 var port = process.env.PORT || 8080;
 
+//cors
+const config = {
+    application: {
+        cors: {
+            server: [{
+                origin: "*", //servidor que deseas que consuma o (*) en caso que sea acceso libre
+                credentials: true
+            }]
+        }
+    }
+}
+
+app.use(cors(
+    config.application.cors.server
+));
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
