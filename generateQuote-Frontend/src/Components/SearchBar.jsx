@@ -55,7 +55,6 @@ export default function SearchBar() {
                 <IconButton className={classes.iconButton} onClick={search} >
                     <SearchIcon />
                 </IconButton>
-
             </Paper>
         </>
     )

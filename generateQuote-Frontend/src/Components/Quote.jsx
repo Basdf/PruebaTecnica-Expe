@@ -11,54 +11,45 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
 export default function Quote() {
     const { quote, createQuote, deleteQuote } = useQuote();
     const classes = useStyles();
-    const create = () => {
-        createQuote();
-    }
-    const erase = () => {
-        deleteQuote(quote.data._id)
-    }
-    console.log(quote)
+    const create = () => { createQuote(); }
+    const erase = () => { deleteQuote(quote.data._id) }
     return (
         <>
             {quote !== null &&
                 <>
 
                     {
-                        quote.data.message &&
-                        <>
-                            <Typography variant="h4" color="textSecondary" component="p"
-                                style={{ width: "90%", margin: "auto", marginBottom: 10 }}>
-                                {quote.data.message}
-                            </Typography>
-                            {quote.config.method !== "delete"
-                                ? <img src="https://i.stack.imgur.com/WOlr3.png"
-                                    style={{ width: 900 }}></img>
-                                : <img src="https://i2.wp.com/www.techquintal.com/wp-content/uploads/2017/03/200-OK-Status-Code-HTTP.jpg?w=595&ssl=1"
-                                    style={{ width: 900 }}></img>
-                            }
+                        // Condicion que diferencia entre un mensaje de error y una respuesta exitosa de la api
+                        quote.data.message
+                            ? <>
+                                <Typography variant="h4" color="textSecondary" component="p"
+                                    style={{ width: "90%", margin: "auto", marginBottom: 10 }}>
+                                    {quote.data.message}
+                                </Typography>
+                                {
+                                    // Condicion para poner la imagen de error o de eliminado exitoso
+                                    quote.config.method !== "delete"
+                                        ? <img src="https://i.stack.imgur.com/WOlr3.png"
+                                            style={{ width: 900 }}></img>
+                                        : <img src="https://i2.wp.com/www.techquintal.com/wp-content/uploads/2017/03/200-OK-Status-Code-HTTP.jpg?w=595&ssl=1"
+                                            style={{ width: 900 }}></img>
+                                }
 
-                        </>
+                            </>
+                            : <>
+                                <Typography variant="h4" color="textSecondary" component="p"
+                                    style={{ width: "90%", margin: "auto", marginBottom: 10 }} >
+                                    {quote.data.quote}
+                                </Typography>
+                                <img src={quote.data.image}
+                                    style={{ width: 1000, marginBottom: 10 }} ></img>
+                            </>
                     }
-                    {
-                        quote.data.quote &&
-                        <>
-                            <Typography variant="h4" color="textSecondary" component="p"
-                                style={{ width: "90%", margin: "auto", marginBottom: 10 }} >
-                                {quote.data.quote}
-                            </Typography>
-                            <img src={quote.data.image}
-                                style={{ width: 1000, marginBottom: 10 }} ></img>
-                        </>
-                    }
-
-
                 </>
             }
-
             <div
                 style=
                 {{
@@ -77,7 +68,9 @@ export default function Quote() {
                     Create
                 </Button>
 
-                {(quote !== null && quote.data.quote) &&
+                {
+                    // Condicion para mostrar el id y la boton borrar solo cuando se muestra un objeto valido
+                    (quote !== null && quote.data.quote) &&
                     <>
                         <Typography variant="h6" color="textPrimary" className={classes.button}>
                             Quote's id = {quote.data._id}
@@ -91,12 +84,8 @@ export default function Quote() {
                             Delete
                         </Button>
                     </>
-
                 }
-
             </div>
-
         </>
-
     )
 }
