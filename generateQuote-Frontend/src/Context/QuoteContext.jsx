@@ -15,7 +15,6 @@ export function QuoteProvider(props) {
         setQuote(response)
     }
     async function searchQuote(id) {
-        console.log(id)
         let response = await Axios.get(`http://${url}/api/v1/generate-changing-life-quote/${id}`)
             .catch((error) => {
                 console.error(error);
