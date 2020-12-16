@@ -34,5 +34,9 @@ Metodo Delete
 
 ## Configuracion para desplegar en local
 
-En la carpeta del backend (generateQuote-Backend) se cambia la url de la base de datos en el archivo "app\dbConfig.js".
+En la carpeta del backend (generateQuote-Backend) se cambia la url de la base de datos en el archivo "app\dbConfig.js".  
 En caso de que el backend se despliegue en otro puerto, se debe cambiar la url de la api en el archivo generateQuote-Frontend\src\Context\QuoteContext.jsx
+
+## Despliegue con docker
+Para desplegar la aplicacion con docker, ejecutar el comando docker-compose up -d en la carpeta donde se encuentra el archivo docker-compose.yml  
+El backend estara corriendo en el puerto 8080 y el frontend en el puerto 3000 por defecto, la base de datos mongo ya viene incluida en la dockerizacion.
