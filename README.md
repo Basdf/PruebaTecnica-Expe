@@ -9,25 +9,25 @@ El backend se realizo en node.js conectado a una base de datos mongodb, el front
 Metodo Post
 ```json
 {
-  “id” : “”,
-  “quote” : “”,
-  “image”: “”
+  "id" : "",
+  "quote" : "",
+  "image": ""
 }
 ```
 ### Ruta http://localhost:8080/api/v1/generate-changing-life-quote/:id
 Metodo Get
 ```json
 {
-  “id” : “”,
-  “quote” : “”,
-  “image”: “”
+  "id" : "",
+  "quote" : "",
+  "image": ""
 }
 ```
 ### Ruta http://localhost:8080/api/v1/generate-changing-life-quote/:id
 Metodo Delete
 ```json
 {
-  “message” : “”,
+  "message" : "",
 }
 ```
 
