@@ -5,7 +5,7 @@ El backend se realizo en node.js conectado a una base de datos mongodb, el front
 
 ## Frontend
 
-###Ruta http://localhost:3000
+### Ruta http://localhost:3000
 
 ## Endpoint Backend
 
